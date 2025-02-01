@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Spinner from '../_components/Spinner';
 import { getCabin, getCabins } from '../_lib/data-service';
 import Filter from '../_components/Filter';
+import ReservationReminder from '../_components/ReservationReminder';
 
 export const revalidate = 3600; //it must be value (sec) //no need for dynamic
 // export const revalidate = 15; //it must be value (sec)
@@ -33,6 +34,7 @@ export default async function Page({ searchParams }) {
       </div>
       <Suspense fallback={<Spinner />}  key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder/>
       </Suspense>
     </div>
   );
