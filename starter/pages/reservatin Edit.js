@@ -1,3 +1,6 @@
+'use client';
+import { useFormStatus } from 'react-dom';
+
 export default function Page() {
   // CHANGE
   const reservationId = 23;
@@ -23,7 +26,7 @@ export default function Page() {
             </option>
             {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
               <option value={x} key={x}>
-                {x} {x === 1 ? "guest" : "guests"}
+                {x} {x === 1 ? 'guest' : 'guests'}
               </option>
             ))}
           </select>
@@ -40,11 +43,21 @@ export default function Page() {
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update reservation
-          </button>
+          <Button />
         </div>
       </form>
     </div>
+  );
+}
+
+function Button() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+      disabled={pending}
+    >
+      {pending ? `Updating...` : `Update reservation`}
+    </button>
   );
 }

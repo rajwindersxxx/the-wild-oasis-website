@@ -27,7 +27,34 @@ export async function updateGuest(formData) {
 
   revalidatePath('/account/profile');
 }
-export async function deleteReservation(bookingId) {
+export async function createBooking(bookingData, formData) {
+  await new Promise((res) => setTimeout(res, 2000));
+  const session = await auth();
+  if (!session) throw new Error('You must be logged in');
+
+  // Object.entries(formData.entries()) use if we have huge object
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get('numGuests')),
+    observations: formData.get('observations').slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: 'unconfirmed',
+  };
+  const { error } = await supabase.from('bookings').insert([newBooking]);
+  if (error) {
+    console.error(error.message)
+    throw new Error('Booking could not be created');
+  }
+  revalidatePath(`/cabins/${bookingData.cabinId}`)
+  redirect('/cabins/thankyou')
+
+}
+export async function deleteBooking(bookingId) {
+  await new Promise((res) => setTimeout(res, 2000));
   const session = await auth();
   if (!session) throw new Error('You must be logged in');
 
@@ -35,6 +62,7 @@ export async function deleteReservation(bookingId) {
   const guestBookingIds = guestBookings.map((booking) => booking.id);
   if (!guestBookingIds.includes(bookingId))
     throw new Error('Your are not allowed to delete this booking');
+
   const { error } = await supabase
     .from('bookings')
     .delete()
@@ -47,14 +75,12 @@ export async function deleteReservation(bookingId) {
 export async function updateBooking(formData) {
   const id = formData.get('id');
   const numGuests = formData.get('numGuests');
-  const observations = formData.get('observations');
+  const observations = formData.get('observations').slice(0, 1000);
   const session = await auth();
   if (!session) throw new Error('You must be logged in');
 
   const guestBookings = await getBookings(session.user.guestId);
   const guestBookingIds = guestBookings.map((booking) => booking.id);
-
-
 
   if (!guestBookingIds.includes(Number(id))) {
     throw new Error('Your are not allowed to edit this booking');
@@ -71,7 +97,7 @@ export async function updateBooking(formData) {
     console.error(error);
     throw new Error('Booking could not be updated');
   }
-  revalidatePath('/account/reservations');
+  revalidatePath(`/account/reservations/edit/${id}`);
   redirect('/account/reservations');
 }
 
