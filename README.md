@@ -1,4 +1,4 @@
-# 🏨 Nexter - Hotel Management App
+# 🏨 The wild oasis Website - Hotel Management App
 
 ## 📌 Project Overview
 
