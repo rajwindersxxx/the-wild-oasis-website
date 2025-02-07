@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-Nexter is a hotel management website where guests can log in and book reservations. Built with **Next.js** and **Tailwind CSS**, the application provides a smooth user experience with animations and icons. Authentication is managed via **Auth.js**, while **Supabase** handles the database. This project includes both **server-side** and **client-side** components.
+The wild oasis  is a hotel management website where guests can log in and book reservations. Built with **Next.js** and **Tailwind CSS**, the application provides a smooth user experience with animations and icons. Authentication is managed via **Auth.js**, while **Supabase** handles the database. This project includes both **server-side** and **client-side** components.
 
 ---
 
