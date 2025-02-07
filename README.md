@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏨 Nexter - Hotel Management App
 
-## Getting Started
+## 📌 Project Overview
 
-First, run the development server:
+Nexter is a hotel management website where guests can log in and book reservations. Built with **Next.js** and **Tailwind CSS**, the application provides a smooth user experience with animations and icons. Authentication is managed via **Auth.js**, while **Supabase** handles the database. This project includes both **server-side** and **client-side** components.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js
+- **Backend & Database:** Supabase, Auth.js, Vercel
+- **UI Styling:** Tailwind CSS
+- **Libraries Used:** react-day-picker, date-fns
+
+---
+
+## 🎯 Features
+
+### 🔐 Authentication
+
+- Users can **sign up** via Google authentication.
+- New users can only sign up **within the application** (ensuring only hotel employees get accounts).
+- Users can **update their profile** and **make reservations**.
+
+### 🏡 Cabin Page
+
+- View available **cabins with descriptions**.
+- Make reservations by clicking on **Details & Reservation**.
+- Select **dates** and **number of guests**.
+- Filter cabins based on **guest capacity**.
+
+### ℹ️ About Page
+
+- A simple page where users can learn more about the company.
+
+### 👤 Guest Dashboard
+
+- Each guest can **manage their reservations**:
+  - Edit **number of guests** or leave **feedback** on reservations.
+  - **Delete** reservations if needed.
+  - Update their profile, including **national ID** and **nationality**.
+
+---
+
+## 🚀 Installation & Setup
+
+### 📥 Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+- [Supabase account](https://supabase.com/)
+- A hosting service (e.g., Vercel) for deployment
+
+### 🌐 Setting Up Supabase API
+
+![Database Setup](./screenShots/dataBase.png)
+
+---
+
+## ⚡ Steps to Run Locally
+
+1️⃣ **Clone the repository**:
+
+```sh
+ git clone https://github.com/rajwindersxxx/the-wild-oasis-website.git
+ cd the-wild-oasis-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2️⃣ **Install dependencies**:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```sh
+ npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3️⃣ **Set up environment variables**:
 
-## Learn More
+- Create a **.env.local** file in the root directory (🚨 DO NOT SHARE THIS FILE 🚨)
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+SUPABASE_URL=SUPABASE_URL
+SUPABASE_KEY=SUPABASE_SERVER_KEY
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# NextAuth Configuration
+NEXTAUTH_URL=APPLICATION_URL
+NEXTAUTH_SECRET=YOUR_SECRET_KEY
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Google Authentication
+AUTH_GOOGLE_ID=GOOGLE_AUTH_ID
+AUTH_GOOGLE_SECRET=GOOGLE_SECRET
+```
 
-## Deploy on Vercel
+4️⃣ **Run the application**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+ npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+Enjoy using **Nexter - Your Hotel Management Solution**! 🚀✨
+
